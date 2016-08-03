@@ -37,6 +37,8 @@ stop:
 	docker-compose stop
 rm:
 	docker-compose rm -vf
+
+rm-all:
 	rm -f srv/deployments/mediaserver.ear
 	rm -f srv/deployments/mediaserver.ear.deployed
 	rm -f srv/deployments/mediaserver.ear.failed
