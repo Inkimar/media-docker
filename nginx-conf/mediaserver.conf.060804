@@ -1,0 +1,66 @@
+#server {
+#		listen 80;
+#		server_name beta-media.dina-web.net;
+#	
+#		access_log logs/host.access.log main;
+#
+#
+#		location /MediaServerResteasy {
+#		   include conf.d/proxy_headers.conf;
+#		   proxy_pass http://app:8080;
+#		}
+#
+#		location / {
+#			root /usr/share/nginx/html;
+#			index index.html index.htm;
+#		}
+#		
+#	}
+
+server {
+
+	listen 443 ssl;
+	server_name beta-media.dina-web.net;
+
+	access_log logs/ssl.access.log main;
+
+	ssl_certificate	ssl/cert.pem;
+	ssl_certificate_key ssl/cert.key;
+	
+	ssl_session_cache	shared:SSL:1m;
+	ssl_session_timeout	5m;
+	
+	ssl_ciphers	HIGH:!aNULL:!MD5;
+	ssl_prefer_server_ciphers	on;
+	
+
+        location /MediaServerResteasy {
+		   include conf.d/proxy_headers.conf;
+		   proxy_pass http://app:8080;
+		}
+
+	location /management {
+	   include conf.d/proxy_headers.conf;
+	   proxy_pass http://app:9990/management;
+	}
+
+	location /console {
+	   include conf.d/proxy_headers.conf;
+	   proxy_pass http://app:9990/console;
+	}
+
+	location /logout {
+	   include conf.d/proxy_headers.conf;
+	   proxy_pass http://app:9990/logout;
+	}
+
+	location /error {
+	   include conf.d/proxy_headers.conf;
+	   proxy_pass http://app:9990;
+	}	
+
+	location / {
+		root /usr/share/nginx/html;
+		index index.html index.htm;
+	}
+}

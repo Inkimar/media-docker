@@ -2,13 +2,15 @@ batch
 
 deploy customization/mysql-connector-java-5.1.38-bin.jar
 
+#/subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql,driver-module-name=com.mysql.jdbc,driver-xa-datasource-class-name=com.mysql.jdbc.jdbc2.optional.MysqlXADataSource)
+
 data-source add --name=MediaDS \
-	--jndi-name=java:/MediaDS \
+	--jndi-name=java:/MigrationDS \
 	--driver-name=mysql-connector-java-5.1.38-bin.jar_com.mysql.jdbc.Driver_5_1 \
-	--connection-url=jdbc:mysql://dbmedia:3306/media?useUnicode=true&amp;characterEncoding=UTF-8 \
-   	--user-name=mediaserver \ 
+	--connection-url=jdbc:mysql://dbmedia:3306/nf_media?useUnicode=true&amp;characterEncoding=UTF-8 \
+    	--user-name=mediaserver \ 
 	--password=mediaserver \
-	--check-valid-connection-sql="SELECT 1" \
+    	--check-valid-connection-sql="SELECT 1" \
 	--background-validation=true \
 	--background-validation-millis=60000 \
 	--flush-strategy=IdleConnections \
