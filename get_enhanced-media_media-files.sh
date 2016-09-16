@@ -11,5 +11,5 @@ echo "unpack ${image_tar}"
 
 cd $DST
 tar xvfz ${image_tar}
-echo "erasing ${image_tar}"
+echo "deletes the tar :  ${image_tar}"
 rm ${image_tar}
