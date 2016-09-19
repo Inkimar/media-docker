@@ -9,6 +9,7 @@
 
 
 mysql_media-autoload/mediaserver*.sql
+mysql_media-datadir/
 srv/deployments/mediaserver-nf.ear.deployed
 srv/deployments/mediaserver-nf.ear
 srv/releases/mediaserver-nf.ear.deployed
