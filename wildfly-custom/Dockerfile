@@ -17,6 +17,17 @@ USER root
 # admin-interface
 RUN bin/add-user.sh -s -p passw0rd12 -u naturalist -e
 
+# tini, zombie reaper
+ENV TINI_VERSION v0.10.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini.asc /tini.asc
+RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 595E85A6B1B4779EA4DAAEC70B588DFF0527A9B7 \
+ && gpg --verify /tini.asc
+
+RUN chmod +x /tini
+
+ENTRYPOINT ["/tini", "--"]
+
 CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
 
 
