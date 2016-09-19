@@ -1,15 +1,10 @@
 #!/bin/bash
-image_tar=media-files.tgz
-SRC=/media/buffalo/dina-data/naturalist/integrated/${image_tar}
+MEDIA_TAR=media-files.tgz
+SRC=/media/buffalo/dina-data/naturalist/integrated/${MEDIA_TAR}
 DST=srv/data
 
-echo "copying mediafiles ${image_tar} from ${SRC} to ${DST}"
-
-cp $SRC $DST
-echo "copy done"
-echo "unpack ${image_tar}"
-
-cd $DST
-tar xvfz ${image_tar}
-echo "deletes the tar :  ${image_tar}"
-rm ${image_tar}
+echo "copying mediafiles ${MEDIA_TAR} from ${SRC} to ${DST}"
+test -f $DST/$MEDIA_TAR || (cp $SRC $DST && cd $DST && tar xvfz ${MEDIA_TAR})
+#tar xvfz ${MEDIA_TAR}
+#echo "deletes the tar :  ${image_tar}"
+#rm ${image_tar} 
