@@ -22,7 +22,11 @@ init:
 	#./get_nginx_certs.sh
 	
 build:
-	docker-compose build --no-cache app
+	#docker-compose build --no-cache app
+	@docker build -t dina/media:v0.1 wildfly-custom
+
+release:
+	docker push  dina/media:v0.1
 
 up:
 	docker-compose up -d
