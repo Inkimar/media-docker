@@ -10,6 +10,5 @@ test -f $DST/$MEDIA_TAR || cd $DST && wget $SRC
 
 #Fetching artifact from Buffalo
 #SRC=/media/buffalo/dina-data/naturalist/integrated/${SCHEMA}
-#echo "copying from ${SRC} to ${RELEASE} and ${DST}"
 #cp $SRC $DST
 
