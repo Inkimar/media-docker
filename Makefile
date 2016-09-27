@@ -16,7 +16,7 @@ init:
 	./get_enhanced-media_war.sh
 	
 	echo "Installing image files"
-	#./get_enhanced-media_media-files.sh
+	./get_enhanced-media_media-files.sh
 
 	#echo "Installing nginx certs and DINA favicon"
 	#./get_nginx_certs.sh
