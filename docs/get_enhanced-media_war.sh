@@ -1,7 +1,7 @@
 #!/bin/bash
 FILE=mediaserver-nf.ear
 SRC=/media/buffalo/dina-data/naturalist/integrated/${FILE}
-DST=srv/deployments
+DST=wildfly-custom
 RELEASE=srv/releases
 
 echo "copying from ${SRC} to ${RELEASE} and ${DST}"

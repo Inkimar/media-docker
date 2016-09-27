@@ -12,6 +12,10 @@ RUN /opt/jboss/wildfly/customization/execute.sh
 # Fix for Error: Could not rename /opt/jboss/wildfly/standalone/configuration/standalone_xml_history/current 
 RUN rm -rf /opt/jboss/wildfly/standalone/configuration/standalone_xml_history
 RUN chown -R jboss:jboss /opt/jboss/wildfly/
+
+USER jboss
+ADD mediaserver-nf.ear /opt/jboss/wildfly/standalone/deployments/
+
 USER root
 
 # admin-interface

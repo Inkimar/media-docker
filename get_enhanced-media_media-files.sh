@@ -1,10 +1,10 @@
 #!/bin/bash
-MEDIA_TAR=media-files.tgz
-SRC=/media/buffalo/dina-data/naturalist/integrated/${MEDIA_TAR}
+MEDIA_FILES=media-files.tgz
+SRC=https://archive.org/download/media-files/${MEDIA_FILES}
 DST=srv/data
+echo "copying mediafiles ${MEDIA_FILES} from ${SRC} to ${DST}"
+test -f $MEDIA_FILES || (wget $SRC  && tar xvfz $MEDIA_FILES -C $DST)
 
-echo "copying mediafiles ${MEDIA_TAR} from ${SRC} to ${DST}"
-test -f $DST/$MEDIA_TAR || (cp $SRC $DST && cd $DST && tar xvfz ${MEDIA_TAR})
-#tar xvfz ${MEDIA_TAR}
-#echo "deletes the tar :  ${image_tar}"
-#rm ${image_tar} 
+#SRC=/media/buffalo/dina-data/naturalist/integrated/${MEDIA_TAR}
+#test -f $DST/$MEDIA_TAR || (cp $SRC $DST && cd $DST && tar xvfz ${MEDIA_TAR})
+

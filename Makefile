@@ -1,5 +1,6 @@
 ME=$(USER)
-all: build init up
+#all: build init up
+all: init up
 
 clean: stop rm
 	sudo chown -R $(ME):$(ME) nginx-conf nginx-html nginx-certs nginx-logs
@@ -12,8 +13,6 @@ init:
 	echo "set up database nf_media"
 	docker-compose up -d db.media
 	
-	echo "Installing app file (.war)"
-	./get_enhanced-media_war.sh
 	
 	echo "Installing image files"
 	./get_enhanced-media_media-files.sh
@@ -22,7 +21,13 @@ init:
 	#./get_nginx_certs.sh
 	
 build:
-	docker-compose build --no-cache app
+	#echo "Installing app file (.war)"
+	#./get_enhanced-media_war.sh
+	#docker-compose build --no-cache app
+	@docker build -t dina/media:v0.1 wildfly-custom
+
+release:
+	docker push  dina/media:v0.1
 
 up:
 	docker-compose up -d
