@@ -19,4 +19,6 @@ data-source add --name=MediaDS \
 	--blocking-timeout-wait-millis=5000 \
 	--enabled=true
 
+/subsystem=undertow/server=default-server/http-listener=default/:write-attribute(name=max-post-size,value=1048576000)
+
 run-batch
