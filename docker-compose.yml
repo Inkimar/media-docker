@@ -14,15 +14,8 @@ fs_as:
     - ./srv/media:/opt/data/media
 
 db.media:
-  image: mysql:5.5
-  environment:
-    - TZ=Europe/Stockholm
-    - MYSQL_ROOT_PASSWORD=supersecret
-    - MYSQL_DATABASE=media
-    - MYSQL_USER=mediaserver
-    - MYSQL_PASSWORD=mediaserver
-  #ports:
-  # - "13306:3306"
+  image: mysql:5.6
+  env_file: .env
   volumes_from:
     - fs_db.media
 
