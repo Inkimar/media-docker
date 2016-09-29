@@ -1,5 +1,7 @@
-PORT = 80
+PORT = 18080
 SIZE = 1000
+HOST = beta-media.dina-web.net
+
 all: headers resize bundle post-large
 
 
@@ -18,13 +20,13 @@ post-large: big.b64
 	@echo "posting BIG"
 	@curl -H "Accept: application/json" \
 		-H "Content-type: application/json" -X POST \
-		-d @big.b64 http://localhost:${PORT}/MediaServerResteasy/media/v1
+		-d @big.b64 http://${HOST}:${PORT}/MediaServerResteasy/media | json_pp
 
 post-small: picapica.b64
 	@echo "posting SMALL"
 	@curl -H "Accept: application/json" \
 		-H "Content-type: application/json" -X POST \
-		-d @picapica.b64 http://localhost:${PORT}/MediaServerResteasy/media/v1
+		-d @picapica.b64 http://${HOST}:${PORT}/MediaServerResteasy/media | json_pp
 	
 clean:
 	rm dragon.png dragon.b64 big.b64 head.json tail.json
