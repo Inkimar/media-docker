@@ -22,3 +22,9 @@ srv/log/server.log
 # Package Files #
 *.war
 *.ear
+
+self-test/dragon.png
+self-test/dragon.b64
+self-test/big.b64
+self-test/head.json
+self-test/tail.json
