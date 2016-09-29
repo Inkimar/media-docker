@@ -1,12 +1,14 @@
-#directories created by mysql
 mysql-autoload/media.dump.sql
+#directories created by mysql
 mysql-datadir
 mysql-shr
 mysql-conf.d
-mysql-datadir
+nginx-logs
+
 
 # artifact
 srv/releases/mediaserver-ear.ear
+srv/releases/media.dump.sql
 srv/deployments/mediaserver-ear.ear.deployed
 srv/deployments/mediaserver-ear.ear.failed
 srv/deployments/mediaserver-ear.ear
