@@ -4,8 +4,8 @@ VERSION = v0.4
 ARTIFACT = mediaserver.ear
 SQL_DUMP = media.dump.sql
 
-#all: init db build up deploy
-all:  db build up deploy
+all: init db build up deploy
+#all:  db build up deploy
 
 init:
 	@echo "Pulling the DINA mediaserver-module release"
