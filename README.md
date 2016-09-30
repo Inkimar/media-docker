@@ -4,7 +4,8 @@ Dockerized media server module <br>
 Tested with dw-proxy ( https : https://github.com/DINA-Web/proxy-docker  ) <br>
 NB 1: on which URL is your mediaserver residing.<br>
 
-0. Make sure to update the /etc/hosts-file default : Is set up with 'beta-media.dina-web.net'
+0. Make sure to update the /etc/hosts-file default : 
+1. The mediaserver is set up with URL = 'beta-media.dina-web.net'
 1. that is configured in the 'docker-compose.yml'
 2. that is configured in the nginx-conf/mediaserver.conf
 3. that is configured in the 'mysql-autoload/update-admin_config.sql' (update the post before you db-creation)
