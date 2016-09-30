@@ -17,7 +17,7 @@ bundle: dragon.png
 	@base64 dragon.png > dragon.b64
 	@cat head.json dragon.b64 tail.json > big.b64
 
-# does not re-reout automatically
+# does not re-reoute automatically
 #post-large-http: big.b64
 #	@curl -H "Accept: application/json" \
 #		-H "Content-type: application/json" -X POST \
