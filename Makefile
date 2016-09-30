@@ -4,8 +4,8 @@ VERSION = v0.4
 ARTIFACT = mediaserver.ear
 SQL_DUMP = media.dump.sql
 
-#all: init db build up deploy
-all:  db build up deploy
+all: init db build up deploy
+#all:  db build up deploy
 
 init:
 	@echo "Pulling the DINA mediaserver-module release"
@@ -27,13 +27,6 @@ up: db
 deploy :
 	cp srv/releases/${ARTIFACT} srv/deployments/
 
-demo-http:
-	@echo "Test to upload images to server using curl over HTTP (remember to add 'api.nrm.se' to /etc/hosts)"
-	cd self-test; ./post-3-images-http-style.sh
-
-demo-https:
-	@echo "Test to upload images to server using curl over HTTPS (running https if dw-proxy is running - remember to add 'api.nrm.se' to /etc/hosts)"
-	cd self-test; ./post-3-images-https-style.sh
 
 ps:
 	docker-compose ps
