@@ -3,7 +3,7 @@ HOST = api.nrm.se
 PORT = 18080
 SIZE = 1000
 
-all: headers resize bundle post-large
+all: headers resize bundle post-large-https
 
 
 headers:
@@ -17,11 +17,17 @@ bundle: dragon.png
 	@base64 dragon.png > dragon.b64
 	@cat head.json dragon.b64 tail.json > big.b64
 
-post-large: big.b64
-	@echo "posting BIG"
+# does not re-reout automatically
+#post-large-http: big.b64
+#	@curl -H "Accept: application/json" \
+#		-H "Content-type: application/json" -X POST \
+#		-d @big.b64 http://${HOST}:${PORT}/MediaServerResteasy/media | json_pp
+
+
+post-large-https: big.b64
 	@curl -H "Accept: application/json" \
 		-H "Content-type: application/json" -X POST \
-		-d @big.b64 http://${HOST}:${PORT}/MediaServerResteasy/media | json_pp
+		-d @big.b64 https://${HOST}/MediaServerResteasy/media | json_pp 
 
 clean:
 	rm dragon.png dragon.b64 big.b64 head.json tail.json
