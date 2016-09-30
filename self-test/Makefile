@@ -1,6 +1,7 @@
+#HOST = beta-media.dina-web.net
+HOST = api.nrm.se
 PORT = 18080
 SIZE = 1000
-HOST = beta-media.dina-web.net
 
 all: headers resize bundle post-large
 

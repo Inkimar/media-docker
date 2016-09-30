@@ -43,7 +43,7 @@ app:
 ws:
   image: nginx
   environment:
-   - VIRTUAL_HOST=beta-media.dina-web.net
+   - VIRTUAL_HOST=api.nrm.se
   volumes_from:
     - fs_ws
   links:
