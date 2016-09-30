@@ -1,6 +1,4 @@
-#HOST = beta-media.dina-web.net
 HOST = api.nrm.se
-PORT = 18080
 SIZE = 1000
 
 all: headers resize bundle post-large-https
@@ -17,14 +15,9 @@ bundle: dragon.png
 	@base64 dragon.png > dragon.b64
 	@cat head.json dragon.b64 tail.json > big.b64
 
-# does not re-reoute automatically
-#post-large-http: big.b64
-#	@curl -H "Accept: application/json" \
-#		-H "Content-type: application/json" -X POST \
-#		-d @big.b64 http://${HOST}:${PORT}/MediaServerResteasy/media | json_pp
-
 
 post-large-https: big.b64
+	@echo "posting to HTTPS (does not re-route from http to https)"
 	@curl -H "Accept: application/json" \
 		-H "Content-type: application/json" -X POST \
 		-d @big.b64 https://${HOST}/MediaServerResteasy/media | json_pp 
