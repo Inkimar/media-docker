@@ -30,3 +30,21 @@ self-test/dragon.b64
 self-test/big.b64
 self-test/head.json
 self-test/tail.json
+
+# Media files
+srv/data/media_files/0/
+srv/data/media_files/1/
+srv/data/media_files/2/
+srv/data/media_files/3/
+srv/data/media_files/4/
+srv/data/media_files/5/
+srv/data/media_files/6/
+srv/data/media_files/7/
+srv/data/media_files/8/
+srv/data/media_files/9/
+srv/data/media_files/a/
+srv/data/media_files/b/
+srv/data/media_files/c/
+srv/data/media_files/d/
+srv/data/media_files/e/
+srv/data/media_files/f/
