@@ -4,14 +4,14 @@ VERSION = v0.4
 ARTIFACT = mediaserver.ear
 SQL_DUMP = media.dump.sql
 
-all: init db build up deploy
+#all: init db build up deploy
 #all:  db build up deploy
+all: init db up deploy
 
 init:
 	@echo "Pulling the DINA mediaserver-module release"
 	test -f srv/releases/${ARTIFACT} ||  wget $(BASE)/$(VERSION)/mediaserver-ear.ear -O srv/releases/${ARTIFACT}
 	test -f srv/releases/${SQL_DUMP}||  (wget $(BASE)/$(VERSION)/${SQL_DUMP} -O srv/releases/${SQL_DUMP} && cp srv/releases/${SQL_DUMP} mysql-autoload)
-	#cp srv/releases/media.dump.sql mysql-autoload
 
 db:
 	docker-compose up -d db.media
@@ -19,10 +19,20 @@ db:
 	sleep 10
 
 build:
-	docker-compose build
+	#docker-compose build
+	@docker build -t dina/media_enhanced:v0.1 wildfly-custom
+
+release:
+	@echo "if you are not loggin in , then you must type 'docker login' "
+	@docker push dina/media_enhanced:v0.1
 
 up: db
 	docker-compose up -d
+	echo "on Localhost: Please make sure you have api.nrm.se in your /etc/hosts!"
+	sleep 15
+	
+	#echo "Opening app!"
+	#firefox http://api.nrm.se/MediaServerResteasy/
 
 deploy :
 	cp srv/releases/${ARTIFACT} srv/deployments/
