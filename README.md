@@ -1,7 +1,9 @@
 # dw-media_docker
 
 Dockerized media server module <br>
-Tested with dw-proxy ( https : https://github.com/DINA-Web/proxy-docker  ) <br>
+Tested with proxy-docker ( nginx reverse proxy : https://github.com/DINA-Web/proxy-docker  ) branch 'max-body-size' for large files<br>
+
+
 **NB 1:** on which URL is your mediaserver residing ?<br>
 
 0. Make sure to update the /etc/hosts-file default : 
