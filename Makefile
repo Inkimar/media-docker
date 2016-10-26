@@ -17,8 +17,8 @@ db:
 	sleep 10
 
 build:
-	#docker-compose build
-	@docker build -t dina/media:${DOCKERHUB_VER} wildfly-custom
+	docker-compose build
+	#@docker build -t dina/media:${DOCKERHUB_VER} wildfly-custom
 
 release:
 	@echo "if you are not logged in , then you must type 'docker login' and enter your credentials"
