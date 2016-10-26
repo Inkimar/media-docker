@@ -1,19 +1,12 @@
-BASE = https://github.com/DINA-Web/mediaserver-module/releases/download
-VERSION = v0.4
+#!make
+include .env2
 
-ARTIFACT = mediaserver.ear
-SQL_DUMP = media.dump.sql
-
-#all: init db build up deploy
-#all:  db build up deploy
 all: init db up deploy
 
 init:
-	@echo "Pulling the DINA mediaserver-module release"
+	@echo "Pulling the DINA mediaserver-module release, if necessary"
 	./get_media-artifact.sh
 	./get_media-sql.sh
-	#test -f srv/releases/${ARTIFACT} ||  wget $(BASE)/$(VERSION)/mediaserver-ear.ear -O srv/releases/${ARTIFACT}
-	#test -f srv/releases/${SQL_DUMP}||  (wget $(BASE)/$(VERSION)/${SQL_DUMP} -O srv/releases/${SQL_DUMP} && cp srv/releases/${SQL_DUMP} mysql-autoload)
 
 db:
 	docker-compose up -d db.media
@@ -25,7 +18,7 @@ build:
 	@docker build -t dina/media:v0.1 wildfly-custom
 
 release:
-	@echo "if you are not loggin in , then you must type 'docker login' "
+	@echo "if you are not logged in , then you must type 'docker login' and enter your credentials"
 	@docker push dina/media:v0.1
 
 up: db
@@ -37,7 +30,8 @@ up: db
 	#firefox http://api.nrm.se/MediaServerResteasy/
 
 deploy :
-	cp srv/releases/${ARTIFACT} srv/deployments/
+	@echo "copying ${RELEASE}/${ARTIFACT} to srv/deployments/ "
+	@cp ${RELEASE}/${ARTIFACT} srv/deployments/
 
 
 ps:
@@ -57,3 +51,4 @@ rm-all:
 	rm -f srv/deployments/${ARTIFACT}.deployed
 	rm -f srv/deployments/${ARTIFACT}.failed
 	rm -f mysql-autoload/${SQL_DUMP}
+
