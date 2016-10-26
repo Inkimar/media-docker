@@ -1,0 +1,9 @@
+# environment file (no space between 'key'='value')
+AUTHOR=ingimar
+
+BASE=https://github.com/DINA-Web/mediaserver-module/releases/download
+VERSION=v0.4
+ARTIFACT=mediaserver.ear
+DST=wildfly-custom
+RELEASE=srv/releases
+SQL_DUMP=media.dump.sql

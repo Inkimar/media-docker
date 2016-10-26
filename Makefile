@@ -10,8 +10,10 @@ all: init db up deploy
 
 init:
 	@echo "Pulling the DINA mediaserver-module release"
-	test -f srv/releases/${ARTIFACT} ||  wget $(BASE)/$(VERSION)/mediaserver-ear.ear -O srv/releases/${ARTIFACT}
-	test -f srv/releases/${SQL_DUMP}||  (wget $(BASE)/$(VERSION)/${SQL_DUMP} -O srv/releases/${SQL_DUMP} && cp srv/releases/${SQL_DUMP} mysql-autoload)
+	./get_media-artifact.sh
+	./get_media-sql.sh
+	#test -f srv/releases/${ARTIFACT} ||  wget $(BASE)/$(VERSION)/mediaserver-ear.ear -O srv/releases/${ARTIFACT}
+	#test -f srv/releases/${SQL_DUMP}||  (wget $(BASE)/$(VERSION)/${SQL_DUMP} -O srv/releases/${SQL_DUMP} && cp srv/releases/${SQL_DUMP} mysql-autoload)
 
 db:
 	docker-compose up -d db.media
@@ -20,11 +22,11 @@ db:
 
 build:
 	#docker-compose build
-	@docker build -t dina/media_enhanced:v0.1 wildfly-custom
+	@docker build -t dina/media:v0.1 wildfly-custom
 
 release:
 	@echo "if you are not loggin in , then you must type 'docker login' "
-	@docker push dina/media_enhanced:v0.1
+	@docker push dina/media:v0.1
 
 up: db
 	docker-compose up -d
@@ -42,6 +44,8 @@ ps:
 	docker-compose ps
 
 clean: stop rm
+	sudo chown -R $(ME):$(ME) nginx-conf nginx-html nginx-certs nginx-logs
+	sudo chown -R $(ME):$(ME) mysql_nf-datadir mysql_nf-shr mysql_nf-autoload mysql_nf-conf.d
 
 stop:
 	docker-compose stop
