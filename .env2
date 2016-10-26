@@ -1,9 +1,14 @@
 # environment file (no space between 'key'='value')
-AUTHOR=ingimar
+AUTHOR=ingimar.erlingsson-at-nrm.se
 
 BASE=https://github.com/DINA-Web/mediaserver-module/releases/download
 VERSION=v0.4
+
 ARTIFACT=mediaserver.ear
+SQL_DUMP=media.dump.sql
+
 DST=wildfly-custom
 RELEASE=srv/releases
-SQL_DUMP=media.dump.sql
+
+
+DOCKERHUB_VER=v0.2

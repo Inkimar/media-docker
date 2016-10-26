@@ -1,7 +1,8 @@
 #!make
 include .env2
 
-all: init db up deploy
+#all: init db up deploy
+all-w.image: init db up
 
 init:
 	@echo "Pulling the DINA mediaserver-module release, if necessary"
@@ -9,17 +10,19 @@ init:
 	./get_media-sql.sh
 
 db:
+	@echo "should implement the wait.sh here .... check if database 'media' is present"	
+	sleep 10	
 	docker-compose up -d db.media
 	@echo "Waiting for db to start"
 	sleep 10
 
 build:
 	#docker-compose build
-	@docker build -t dina/media:v0.1 wildfly-custom
+	@docker build -t dina/media:${DOCKERHUB_VER} wildfly-custom
 
 release:
 	@echo "if you are not logged in , then you must type 'docker login' and enter your credentials"
-	@docker push dina/media:v0.1
+	@docker push dina/media:${DOCKERHUB_VER}
 
 up: db
 	docker-compose up -d
@@ -38,8 +41,8 @@ ps:
 	docker-compose ps
 
 clean: stop rm
-	sudo chown -R $(ME):$(ME) nginx-conf nginx-html nginx-certs nginx-logs
-	sudo chown -R $(ME):$(ME) mysql_nf-datadir mysql_nf-shr mysql_nf-autoload mysql_nf-conf.d
+	#sudo chown -R $(ME):$(ME) nginx-conf nginx-html nginx-certs nginx-logs
+	#sudo chown -R $(ME):$(ME) mysql_nf-datadir mysql_nf-shr mysql_nf-autoload mysql_nf-conf.d
 
 stop:
 	docker-compose stop
