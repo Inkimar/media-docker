@@ -20,11 +20,9 @@ db.media:
   volumes_from:
     - fs_db.media
 
-# this configuration gives me correct every-other-time ( post-large-https ) !?
-# this configuration does not reroute an http-request (post-large-http)  to https !? 
 app:
-  #build: ./wildfly-custom
-  image: dina/media_enhanced:v0.1
+  build: ./wildfly-custom
+  #image: dina/media:v0.1
   environment:
    - VIRTUAL_HOST=api.nrm.se
    - VIRTUAL_PORT=8080
