@@ -1,24 +1,23 @@
 #!make
 include .env2
 
-#all: init db up deploy
 all-w.image: init db up
 
 init:
 	@echo "Pulling the DINA mediaserver-module release, if necessary"
 	./get_media-artifact.sh
 	./get_media-sql.sh
+	@cd wildfly-custom && test -f wait-for-it.sh || \
+		(wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh && \
+	chmod +x wait-for-it.sh)
 
 db:
 	@echo "should implement the wait.sh here .... check if database 'media' is present"	
-	sleep 10	
-	docker-compose up -d db.media
-	@echo "Waiting for db to start"
-	sleep 10
+	docker-compose up -d dbmedia
 
-build:
-	docker-compose build
-	#@docker build -t dina/media:${DOCKERHUB_VER} wildfly-custom
+build: db
+	#docker-compose build
+	@docker build -t dina/media:${DOCKERHUB_VER} wildfly-custom
 
 release:
 	@echo "if you are not logged in , then you must type 'docker login' and enter your credentials"
@@ -27,7 +26,6 @@ release:
 up: db
 	docker-compose up -d
 	echo "on Localhost: Please make sure you have api.nrm.se in your /etc/hosts!"
-	sleep 15
 	
 	#echo "Opening app!"
 	#firefox http://api.nrm.se/MediaServerResteasy/

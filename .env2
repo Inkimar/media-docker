@@ -10,5 +10,4 @@ SQL_DUMP=media.dump.sql
 DST=wildfly-custom
 RELEASE=srv/releases
 
-
-DOCKERHUB_VER=v0.2
+DOCKERHUB_VER=v0.4

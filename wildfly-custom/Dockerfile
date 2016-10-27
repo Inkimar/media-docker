@@ -25,8 +25,13 @@ RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 595E85A6B1B4779EA4DAA
 
 RUN chmod +x /tini
 
+ADD wait-for-it.sh /opt/jboss/wildfly
+ADD customization/mediaserver.ear /opt/jboss/wildfly/standalone/deployments/
+
 ENTRYPOINT ["/tini", "--"]
 
-CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
+#CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
+CMD  ./wait-for-it.sh --timeout=40 dbmedia:3306 --strict -- \
+	/opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0
 
 
