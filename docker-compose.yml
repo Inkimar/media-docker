@@ -22,7 +22,7 @@ dbmedia:
 
 app:
   #build: ./wildfly-custom
-  image: dina/media:v0.7
+  image: dina/media:v0.4
   environment:
    - VIRTUAL_HOST=api.nrm.se
    - VIRTUAL_PORT=8080

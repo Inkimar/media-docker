@@ -5,7 +5,7 @@ all-w.image: init db up
 
 init:
 	@echo "Pulling the DINA mediaserver-module release, if necessary"
-	./get_media-artifact.sh
+	
 	./get_media-sql.sh
 	@cd wildfly-custom && test -f wait-for-it.sh || \
 		(wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh && \
@@ -31,6 +31,7 @@ up: db
 	#firefox http://api.nrm.se/MediaServerResteasy/
 
 deploy :
+	./get_media-artifact.sh
 	@echo "copying ${RELEASE}/${ARTIFACT} to srv/deployments/ "
 	@cp ${RELEASE}/${ARTIFACT} srv/deployments/
 
