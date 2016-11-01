@@ -7,14 +7,14 @@ clean: stop rm
 	sudo chown -R $(ME):$(ME) mysql_nf-datadir mysql_nf-shr mysql_nf-autoload mysql_nf-conf.d
 
 db:
-	echo "Retrieving the database for the mediaserver"
-	./get_enhanced-media_db-schema.sh
+	
 	docker-compose up -d dbmedia
 
 init:
 	
 	echo "set up database nf_media"
-	docker-compose up -d db.media
+	./get_enhanced-media_db-schema.sh
+	docker-compose up -d dbmedia
 
 	#echo "Installing nginx certs and DINA favicon"
 	#./get_nginx_certs.sh
