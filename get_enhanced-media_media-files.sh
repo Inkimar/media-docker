@@ -1,7 +1,7 @@
 #!/bin/bash
 MEDIA_FILES=media-files.tgz
 SRC=https://archive.org/download/media-files/${MEDIA_FILES}
-DST=srv/data
+DST=srv/media
 echo "copying mediafiles ${MEDIA_FILES} from ${SRC} to ${DST}"
 test -f $MEDIA_FILES || (wget $SRC  && tar xvfz $MEDIA_FILES -C $DST)
 
