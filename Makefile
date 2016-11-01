@@ -6,28 +6,28 @@ clean: stop rm
 	sudo chown -R $(ME):$(ME) nginx-conf nginx-html nginx-certs nginx-logs
 	sudo chown -R $(ME):$(ME) mysql_nf-datadir mysql_nf-shr mysql_nf-autoload mysql_nf-conf.d
 
-init:
+db:
 	echo "Retrieving the database for the mediaserver"
-
 	./get_enhanced-media_db-schema.sh
+	docker-compose up -d dbmedia
+
+init:
+	
 	echo "set up database nf_media"
 	docker-compose up -d db.media
-	
-	
-	echo "Installing image files"
-	./get_enhanced-media_media-files.sh
 
 	#echo "Installing nginx certs and DINA favicon"
 	#./get_nginx_certs.sh
 	
-build:
+build: db
+	@cd wildfly-custom && test -f wait-for-it.sh || (wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh && chmod +x wait-for-it.sh)
 	#echo "Installing app file (.war)"
-	#./get_enhanced-media_war.sh
+	./get_enhanced-media_war.sh
 	#docker-compose build --no-cache app
-	@docker build -t dina/media:v0.1 wildfly-custom
+	@docker build -t dina/media_e:v0.1 wildfly-custom
 
 release:
-	docker push  dina/media:v0.1
+	docker push  dina/media_e:v0.1
 
 up:
 	docker-compose up -d

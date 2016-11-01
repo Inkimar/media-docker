@@ -1,27 +1,25 @@
 fs_db.media:
   image: tianon/true
   volumes:
+    - ./mysql_media-autoload:/docker-entrypoint-initdb.d:ro
     - ./mysql_media-datadir:/var/lib/mysql:z
     - ./mysql_media-shr:/shr:z
-    - ./mysql_media-autoload:/docker-entrypoint-initdb.d:ro
     - ./mysql_media-conf.d:/etc/mysql/conf.d:z
 
-fs_ws:
-  image: tianon/true
-  volumes:
-    - ./nginx-conf:/etc/nginx/conf.d:rw
-    - ./nginx-certs:/etc/nginx/ssl:rw
-    - ./nginx-logs:/etc/nginx/logs:rw
+#fs_ws:
+#  image: tianon/true
+#  volumes:
+#    - ./nginx-conf:/etc/nginx/conf.d:rw
+#    - ./nginx-certs:/etc/nginx/ssl:rw
+#    - ./nginx-logs:/etc/nginx/logs:rw
 
 fs_as:
   image: tianon/true
   volumes:
-    - ./srv/data:/opt/data
-    #- ./srv/deployments:/opt/jboss/wildfly/standalone/deployments:z
-    #- ./srv/releases:/opt/jboss/wildfly/releases
+    - ./srv/media:/opt/data/media
     - ./srv/log:/opt/jboss/wildfly/standalone/log
 
-db.media:
+dbmedia:
   image: mysql:5.6
   env_file: .env
   volumes_from:
@@ -29,17 +27,20 @@ db.media:
 
 app:
   #build: ./wildfly-custom
-  image: dina/media:v0.1
+  image: dina/media_e:v0.1
+  environment:
+   - VIRTUAL_HOST=beta-media.dina-web.net
+   - VIRTUAL_PORT=8080
   volumes_from:
     - fs_as
   links:
-    - db.media:dbmedia
+    - dbmedia
 
-web:
-  image: nginx
-  environment:
-   - VIRTUAL_HOST=beta-media.dina-web.net
-  volumes_from:
-    - fs_ws
-  links:
-    - app
+#web:
+#  image: nginx
+#  environment:
+#   - VIRTUAL_HOST=beta-media.dina-web.net
+#  volumes_from:
+#    - fs_ws
+#  links:
+#    - app
