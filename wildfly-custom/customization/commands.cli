@@ -2,7 +2,6 @@ batch
 
 deploy customization/mysql-connector-java-5.1.38-bin.jar
 
-#/subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql,driver-module-name=com.mysql.jdbc,driver-xa-datasource-class-name=com.mysql.jdbc.jdbc2.optional.MysqlXADataSource)
 
 data-source add --name=MediaDS \
 	--jndi-name=java:/MigrationDS \
@@ -20,5 +19,7 @@ data-source add --name=MediaDS \
 	--use-ccm=true \
 	--blocking-timeout-wait-millis=5000 \
 	--enabled=true
+
+/subsystem=undertow/server=default-server/http-listener=default/:write-attribute(name=max-post-size,value=1048576000)
 
 run-batch

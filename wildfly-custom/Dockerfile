@@ -13,9 +13,6 @@ RUN /opt/jboss/wildfly/customization/execute.sh
 RUN rm -rf /opt/jboss/wildfly/standalone/configuration/standalone_xml_history
 RUN chown -R jboss:jboss /opt/jboss/wildfly/
 
-USER jboss
-ADD mediaserver-nf.ear /opt/jboss/wildfly/standalone/deployments/
-
 USER root
 
 # admin-interface
@@ -27,6 +24,9 @@ ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini.asc /tini.asc
 RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 595E85A6B1B4779EA4DAAEC70B588DFF0527A9B7 \
  && gpg --verify /tini.asc
+
+#adding the artifact . NB: docker-compose.yml - DO NOT MAP a VOLUME TO '/opt/jboss/wildfly/standalone/deployments/'
+ADD customization/mediaserver-nf.ear /opt/jboss/wildfly/standalone/deployments/
 
 RUN chmod +x /tini
 
