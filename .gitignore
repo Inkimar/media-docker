@@ -9,28 +9,28 @@
 
 
 mysql_media-autoload/mediaserver*.sql
-mysql_media-datadir/
+mysql_media-mediadir/
 srv/deployments/mediaserver-nf.ear.deployed
 srv/deployments/mediaserver-nf.ear
 srv/releases/mediaserver-nf.ear.deployed
 srv/releases/mediaserver_for_nf-20160203.sql
 
-srv/data/media_files/0/
-srv/data/media_files/1/
-srv/data/media_files/2/
-srv/data/media_files/3/
-srv/data/media_files/4/
-srv/data/media_files/5/
-srv/data/media_files/6/
-srv/data/media_files/7/
-srv/data/media_files/8/
-srv/data/media_files/9/
-srv/data/media_files/a/
-srv/data/media_files/b/
-srv/data/media_files/c/
-srv/data/media_files/d/
-srv/data/media_files/e/
-srv/data/media_files/f/
+srv/media/0/
+srv/media/1/
+srv/media/2/
+srv/media/3/
+srv/media/4/
+srv/medias/5/
+srv/media/6/
+srv/media/7/
+srv/media/8/
+srv/media/9/
+srv/media/a/
+srv/media/b/
+srv/media/c/
+srv/media/d/
+srv/media/e/
+srv/media/f/
 
 srv/log/server.*
 
@@ -39,4 +39,6 @@ nginx-logs/ssl.access.log
 
 nginx-certs/cert.key
 nginx-certs/cert.pem
+
+*.htm*
 
