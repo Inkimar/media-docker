@@ -2,8 +2,7 @@ HOST = beta-media.dina-web.net
 SIZE = 1000
 
 OUTPUT_FILE= output.json
-all: headers resize bundle post-https firefox 
-#clean
+all: headers resize bundle post-https firefox clean
 
 
 headers:
