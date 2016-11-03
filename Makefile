@@ -1,4 +1,6 @@
 ME=$(USER)
+DOCKERHUB_VER=v0.2
+
 #all: build init up
 all: init up
 
@@ -24,10 +26,10 @@ build: db
 	#echo "Installing app file (.war)"
 	./get_enhanced-media_war.sh
 	#docker-compose build --no-cache app
-	@docker build -t dina/media_e:v0.1 wildfly-custom
+	@docker build -t dina/media_enhanced:${DOCKERHUB_VER} wildfly-custom
 
 release:
-	docker push  dina/media_e:v0.1
+	docker push  dina/media_enhanced:${DOCKERHUB_VER}
 
 up:
 	docker-compose up -d

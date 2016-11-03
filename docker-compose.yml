@@ -27,7 +27,7 @@ dbmedia:
 
 app:
   #build: ./wildfly-custom
-  image: dina/media_e:v0.1
+  image: dina/media_media_enhanced:v02
   environment:
    - VIRTUAL_HOST=beta-media.dina-web.net
    - VIRTUAL_PORT=8080
