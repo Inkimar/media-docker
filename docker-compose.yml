@@ -6,13 +6,6 @@ fs_db.media:
     - ./mysql_media-shr:/shr:z
     - ./mysql_media-conf.d:/etc/mysql/conf.d:z
 
-#fs_ws:
-#  image: tianon/true
-#  volumes:
-#    - ./nginx-conf:/etc/nginx/conf.d:rw
-#    - ./nginx-certs:/etc/nginx/ssl:rw
-#    - ./nginx-logs:/etc/nginx/logs:rw
-
 fs_as:
   image: tianon/true
   volumes:
@@ -27,7 +20,7 @@ dbmedia:
 
 app:
   #build: ./wildfly-custom
-  image: dina/media_media_enhanced:v02
+  image: dina/media_enhanced:v02
   environment:
    - VIRTUAL_HOST=beta-media.dina-web.net
    - VIRTUAL_PORT=8080
@@ -35,12 +28,3 @@ app:
     - fs_as
   links:
     - dbmedia
-
-#web:
-#  image: nginx
-#  environment:
-#   - VIRTUAL_HOST=beta-media.dina-web.net
-#  volumes_from:
-#    - fs_ws
-#  links:
-#    - app
