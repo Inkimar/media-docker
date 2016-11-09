@@ -6,10 +6,10 @@ all: init up
 init:
 	echo "set up database nf_media"
 	./get_enhanced-media_db-schema.sh
-	docker-compose up -d dbmedia
+	docker-compose up -d db.media
 
 db:
-	docker-compose up -d dbmedia
+	docker-compose up -d db.media
 
 up: db
 	docker-compose up -d
