@@ -1,5 +1,9 @@
 # media-docker
 
+
+[AGPLv3 License](http://img.shields.io/badge/license-AGPLv3-blue.svg) ](https://github.com/DINA-Web/media-docker/blob/master/LICENSE)
+
+
 A dockerized media server module <br>
 Tested with proxy-docker ( nginx reverse proxy : https://github.com/DINA-Web/proxy-docker  -configured to handle 'large' files )<br>
 The media-docker is running on 'wildfly:8.2.1.Final' <br>
