@@ -1,7 +1,7 @@
 # media-docker
 
 
-[AGPLv3 License](http://img.shields.io/badge/license-AGPLv3-blue.svg) ](https://github.com/DINA-Web/media-docker/blob/master/LICENSE)
+[![AGPLv3 License](http://img.shields.io/badge/license-AGPLv3-blue.svg) ](https://github.com/DINA-Web/media-docker/blob/master/LICENSE)
 
 
 A dockerized media server module <br>
