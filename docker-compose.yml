@@ -22,7 +22,7 @@ app.media:
   #build: ./wildfly-custom
   image: ${IMAGE}:${TAG}
   ports:
-     - 8080:8080
+     - 8080:8080 # testing locally ....
   env_file: .env
   environment:
    - VIRTUAL_HOST=beta-media.dina-web.net
