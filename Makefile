@@ -14,11 +14,6 @@ db:
 up: db
 	docker-compose up -d
 
-	echo "on Localhost: Please make sure you have beta-media.dina-web.net in your /etc/hosts!"
-	sleep 15
-	
-	#echo "Opening app!"
-	#firefox http://beta-media.dina-web.net/MediaServerResteasy/&
 	
 build: db
 	@cd wildfly-custom && test -f wait-for-it.sh || (wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh && chmod +x wait-for-it.sh)
@@ -41,4 +36,8 @@ rm:
 	docker-compose rm
 
 browser-test:
+	echo "on Localhost: Please make sure you have beta-media.dina-web.net in your /etc/hosts!"
 	xdg-open  http://beta-media.dina-web.net/MediaServerResteasy/&
+
+how-many-files:
+	find srv/media/ -type f | wc -l
