@@ -33,8 +33,6 @@ media-files:
 	./get_enhanced-media_media-files.sh
 
 clean: stop rm
-	sudo chown -R $(ME):$(ME) nginx-conf nginx-html nginx-certs nginx-logs
-	sudo chown -R $(ME):$(ME) mysql_nf-datadir mysql_nf-shr mysql_nf-autoload mysql_nf-conf.d
 
 stop:
 	docker-compose stop
@@ -42,5 +40,5 @@ stop:
 rm: 
 	docker-compose rm
 
-ps:
-	docker-compose ps
+browser-test:
+	xdg-open  http://beta-media.dina-web.net/MediaServerResteasy/&
