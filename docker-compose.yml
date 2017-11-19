@@ -18,9 +18,9 @@ db.media:
   volumes_from:
     - fs_db.media
 
-app:
+mediaserver:
   #build: ./wildfly-custom
-  image: ${IMAGE}:{TAG}
+  image: ${IMAGE}:${TAG}
   env_file: .env
   environment:
    - VIRTUAL_HOST=beta-media.dina-web.net
