@@ -13,16 +13,11 @@ init:
 
 db:
 	docker-compose up -d db.media
+	sleep 15;
 
 up: db
 	docker-compose up -d
 
-	#echo "Localhost: Please make sure you have beta-media.dina-web.net in your /etc/hosts!"
-	#sleep 15
-	
-	#echo "Opening app!"
-	#firefox http://beta-media.dina-web.net/MediaServerResteasy/&
-	
 build: db
 	@cd wildfly-custom && test -f wait-for-it.sh || (wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh && chmod +x wait-for-it.sh)
 	echo "fetching artifact (.war)"
@@ -35,17 +30,28 @@ release: # docker login ....
 media-files:
 	./get_enhanced-media_media-files.sh
 
+down:
+	@docker-compose down
+
 clean: stop rm
-	sudo chown -R $(ME):$(ME) nginx-conf nginx-html nginx-certs nginx-logs
-	sudo chown -R $(ME):$(ME) mysql_nf-datadir mysql_nf-shr mysql_nf-autoload mysql_nf-conf.d
 
 stop:
-	docker-compose stop
+	@docker-compose stop
 
 rm: 
-	docker-compose rm
+	@docker-compose rm -vf
 
 ps:
-	docker-compose ps
-test:
+	@docker-compose ps
+
+browser-test:
+	@echo "Localhost: Please make sure you have beta-media.dina-web.net in your /etc/hosts!"
 	xdg-open http://beta-media.dina-web.net/MediaServerResteasy/&
+
+browser-local:
+	xdg-open http://localhost:8080/MediaServerResteasy/&
+
+
+#convenience
+login-db:
+	docker exec -it mediadocker_db.media_1 bash
