@@ -2,9 +2,9 @@ fs_db.media:
   image: tianon/true
   volumes:
     - ./mysql_media-autoload:/docker-entrypoint-initdb.d:ro
-    - ./mysql_media-datadir:/var/lib/mysql:z
-    - ./mysql_media-shr:/shr:z
-    - ./mysql_media-conf.d:/etc/mysql/conf.d:z
+    #- ./mysql_media-datadir:/var/lib/mysql:z
+    #- ./mysql_media-shr:/shr:z
+    #- ./mysql_media-conf.d:/etc/mysql/conf.d:z
 
 fs_as:
   image: tianon/true
