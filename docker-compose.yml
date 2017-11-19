@@ -2,9 +2,9 @@ fs_db.media:
   image: tianon/true
   volumes:
     - ./mysql_media-autoload:/docker-entrypoint-initdb.d:ro
-    - ./mysql_media-datadir:/var/lib/mysql:z
-    - ./mysql_media-shr:/shr:z
-    - ./mysql_media-conf.d:/etc/mysql/conf.d:z
+    #- ./mysql_media-datadir:/var/lib/mysql:z
+    #- ./mysql_media-shr:/shr:z
+    #- ./mysql_media-conf.d:/etc/mysql/conf.d:z
 
 fs_as:
   image: tianon/true
@@ -18,9 +18,11 @@ db.media:
   volumes_from:
     - fs_db.media
 
-mediaserver:
+app.media:
   #build: ./wildfly-custom
   image: ${IMAGE}:${TAG}
+  ports:
+     - 8080:8080
   env_file: .env
   environment:
    - VIRTUAL_HOST=beta-media.dina-web.net
