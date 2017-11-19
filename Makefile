@@ -45,7 +45,7 @@ ps:
 	@docker-compose ps
 
 browser-test:
-	@echo "Localhost: Please make sure you have beta-media.dina-web.net in your /etc/hosts!"
+	@echo "with URL: make sure you have beta-media.dina-web.net in /etc/hosts!"
 	xdg-open http://beta-media.dina-web.net/MediaServerResteasy/&
 
 browser-local:
