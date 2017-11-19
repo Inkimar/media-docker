@@ -3,16 +3,16 @@
 
 Manually starting up.
 1. start the database  (db.media)
-1.5 check to see that the db.media is up and running
-2. start the mediaserver (app.media)
-3. run `make browser-test or browser-local`
+2. check to see that the db.media is up and running
+3. start the mediaserver (app.media)
+4. run `make browser-test or browser-local`
 
 ## media-docker for naturforskaren-enhanced (repo 'inkimar')
 DOCKER-project:
 using repo : inkimar
 git clone https://github.com/Inkimar/media-docker.git (branch: ingimar/minor-refactor_adding_environments)
 
-##  artifact from (repo 'icingink' private)
+## the docker-project is using the artifact from 'mediaserver-nf-specific'  (repo 'icingink' private)
 java-project:
 git clone https://github.com/IcingInk/mediaserver-nf-specific ( branch: 'master' )
 artifact in directory : 'ear/target/mediaserver-ear.ear'
