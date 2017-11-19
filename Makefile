@@ -1,13 +1,13 @@
 #!make
 PWD=$(shell pwd)
 ME=$(USER)
+
 include .env
-#DOCKERHUB_VER=v0.2
 
 all: init up
 
 init:
-	echo "set up database nf_media"
+	@echo "set up database nf_media"
 	./get_enhanced-media_db-schema.sh
 	docker-compose up -d db.media
 
@@ -17,8 +17,8 @@ db:
 up: db
 	docker-compose up -d
 
-	echo "on Localhost: Please make sure you have beta-media.dina-web.net in your /etc/hosts!"
-	sleep 15
+	#echo "Localhost: Please make sure you have beta-media.dina-web.net in your /etc/hosts!"
+	#sleep 15
 	
 	#echo "Opening app!"
 	#firefox http://beta-media.dina-web.net/MediaServerResteasy/&
