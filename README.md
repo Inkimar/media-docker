@@ -1,9 +1,26 @@
-# media-docker , branch 'media_enhanced'
+# intro.
+2017-11-17 : imports a database as it was before 'birds' where inserted by Tove von Euler and fetches all files.
+
+## media-docker for naturforskaren-enhanced (repo 'inkimar')
+DOCKER-project:
+using repo : inkimar
+git clone https://github.com/Inkimar/media-docker.git (branch: ingimar/minor-refactor_adding_environments)
+
+##  artifact from (repo 'icingink' private)
+java-project:
+git clone https://github.com/IcingInk/mediaserver-nf-specific ( branch: 'master' )
+artifact in directory : 'ear/target/mediaserver-ear.ear'
+
+## if using https, use the dina-proxy ....
+https : dependency on https://github.com/DINA-Web/proxy-docker.git ( with wildcard cert .... )
+
 
 1. Dockerized version of the mediaserver_enhanced ( used with naturforskaren ).
 2. extract the media-files in the directory ~/srv/media ( so that the structure is ~/srv/media/1 ~/srv/media/2 and soforth )
 3. Check the sql-file, /mysql_media-autoload $ md5sum -c sql.md5
 
+
+## moved the file 'update-admin_config.sql' from mysql_media-autoload to ..
 Additional :
 1. edit settings : https://github.com/DINA-Web/media-docker/blob/media_enhanced/mysql_media-autoload/update-admin_config.sql
 
