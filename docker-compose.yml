@@ -14,13 +14,14 @@ fs_as:
 
 db.media:
   image: mysql:5.6
-  env_file: .env
+  env_file: env/.env-db
   volumes_from:
     - fs_db.media
 
 app:
   #build: ./wildfly-custom
-  image: dina/media_enhanced:v0.2
+  image: ${IMAGE}:{TAG}
+  env_file: .env
   environment:
    - VIRTUAL_HOST=beta-media.dina-web.net
    - VIRTUAL_PORT=8080

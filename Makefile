@@ -1,5 +1,8 @@
+#!make
+PWD=$(shell pwd)
 ME=$(USER)
-DOCKERHUB_VER=v0.2
+include .env
+#DOCKERHUB_VER=v0.2
 
 all: init up
 
@@ -24,10 +27,10 @@ build: db
 	@cd wildfly-custom && test -f wait-for-it.sh || (wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh && chmod +x wait-for-it.sh)
 	echo "fetching artifact (.war)"
 	./get_enhanced-media_war.sh
-	@docker build -t dina/media_enhanced:${DOCKERHUB_VER} wildfly-custom
+	@docker build -t ${IMAGE}:{TAG} wildfly-custom
 
-release:
-	docker push  dina/media_enhanced:${DOCKERHUB_VER}
+release: # docker login ....
+	docker push  ${IMAGE}:{TAG}
 
 media-files:
 	./get_enhanced-media_media-files.sh
@@ -44,3 +47,5 @@ rm:
 
 ps:
 	docker-compose ps
+test:
+	xdg-open http://beta-media.dina-web.net/MediaServerResteasy/&
