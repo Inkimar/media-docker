@@ -44,6 +44,9 @@ rm:
 ps:
 	@docker-compose ps
 
+show-nr-of-files:
+	./countallfiles.sh
+
 browser-test:
 	@echo "with URL: make sure you have beta-media.dina-web.net in /etc/hosts!"
 	xdg-open http://beta-media.dina-web.net/MediaServerResteasy/&
