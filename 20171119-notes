@@ -1,0 +1,16 @@
+branch 'media_enhanced'
+
+sorgmantel:
+
+Denna fungerar:
+https://beta-media.dina-web.net/MediaServerResteasy/media/image/nf/831ce6d9-59e3-4999-a7e0-0fb492ed4da9.jpeg?format=image/png&height=180
+
+Denna fungerar:
+https://beta-media.dina-web.net/MediaServerResteasy/media/image/nf/dc5fc325-426e-4d67-8568-5ccdfb0be864.jpeg?format=image/png&height=180
+
+Källkod för mediaserver - nf -specifik: privat ...
+https://github.com/IcingInk/mediaserver-nf-specific
+
+Lenovo:
+/home/ingimar/repos/github-icingink/mediaserver-nf-specific
+
