@@ -1,6 +1,12 @@
 # intro.
 2017-11-17 : imports a database as it was before 'birds' where inserted by Tove von Euler and fetches all files.
 
+Manually starting up.
+1. start the database  (db.media)
+1.5 check to see that the db.media is up and running
+2. start the mediaserver (app.media)
+3. run `make browser-test or browser-local`
+
 ## media-docker for naturforskaren-enhanced (repo 'inkimar')
 DOCKER-project:
 using repo : inkimar
