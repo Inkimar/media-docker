@@ -1,14 +1,16 @@
+#!make
+##media-docker
 ME=$(USER)
 DOCKERHUB_VER=v0.2
 
 all: init up
 
 init:
-	echo "set up database nf_media"
-	./get_enhanced-media_db-schema.sh
-	docker-compose up -d db.media
+	#echo "set up database nf_media"
+	#./get_enhanced-media_db-schema.sh
+	#docker-compose up -d db.media
 
-db:
+db: # in i readme: update nf_media.ADMIN_CONFIG set admin_value = "/opt/data/media/" where admin_key="path_to_files";
 	docker-compose up -d db.media
 
 up: db
@@ -27,13 +29,16 @@ release:
 media-files:
 	./get_enhanced-media_media-files.sh
 
+down:
+	@docker-compose down
+
 clean: stop rm
 
 stop:
-	docker-compose stop
+	@docker-compose stop
 
 rm: 
-	docker-compose rm
+	@docker-compose rm
 
 browser-test:
 	echo "on Localhost: Please make sure you have beta-media.dina-web.net in your /etc/hosts!"

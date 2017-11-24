@@ -1,3 +1,5 @@
+#media-docker
+
 fs_db.media:
   image: tianon/true
   volumes:
@@ -9,7 +11,7 @@ fs_db.media:
 fs_as:
   image: tianon/true
   volumes:
-    - ./srv/media:/opt/data/media
+    - ./srv/media:/opt/data/media # mapping to mediafile, check table 'ADMIN_CONFIG' in db.
     - ./srv/log:/opt/jboss/wildfly/standalone/log
 
 db.media:
