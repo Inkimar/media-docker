@@ -1,7 +1,7 @@
 #!make
 ##inkimar/media-docker
 ME=$(USER)
-DOCKERHUB_VER=v8.1
+DOCKERHUB_VER=v8.1.1
 
 all: init up
 
