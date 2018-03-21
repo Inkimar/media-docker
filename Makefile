@@ -1,7 +1,9 @@
 #!make
 ##inkimar/media-docker
+
 ME=$(USER)
-DOCKERHUB_VER=v8.1.1
+## 20180321: version=v8.1.3, war-file with all the additional-fields + wait-for-it.sh copied into the Dockerfile
+DOCKERHUB_VER=v8.1.3 
 
 all: init up
 
@@ -18,10 +20,7 @@ up: db
 	docker-compose up -d
 
 	
-build: db
-	@cd wildfly-custom && test -f wait-for-it.sh || (wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh && chmod +x wait-for-it.sh)
-	echo "fetching artifact (.war)"
-	#./get_enhanced-media_war.sh
+build:
 	@docker build -t dina/media_enhanced:${DOCKERHUB_VER} wildfly-custom
 
 release:

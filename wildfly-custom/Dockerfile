@@ -32,6 +32,10 @@ RUN chmod +x /tini
 
 ENTRYPOINT ["/tini", "--"]
 
-CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
+#sparas direkt under root 
+COPY wait-for-it.sh /
+CMD /wait-for-it.sh dbmedia:3306 -q --strict -- /opt/jboss/wildfly/bin
+
+#CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
 
 
